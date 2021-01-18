@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create two equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 30%;
+      padding: 1px;
+      /* height: 300px; Should be removed. Only for demonstration */
+    }/* Clear floats after the columns */
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+    </style>
+</head>
+
+<body>
+    <div class = "row">
+        <h1>National Capital Region (NCR) County Expenditures</h1>
+        <h2>Select counties to compare:</h2>
+    </div>
+    <div class = "row">
+        <div class = "column">
+            <ul>
+                <li>Fairfax</li>
+                <li>Louden</li>
+                <li>Arlington</li>
+                <li>Prince William</li>
+                <li>Prince George's</li>
+                <li>Montgomery</li>
+                <li>DC</li>
+            </ul>
+        </div>
+        <div class = "column">
+            <img src="https://www.capitalareafoodbank.org/wp-content/uploads/2019/09/CAFB_Map-Need.svg" alt = "NCR"
+            style = "width: 50%;">
+        </div>
+        <div class = "column">
+            
+        </div>
+    </div>
+
+    <div id="fairfaxPlot"></div>
+    <script src="static/js/data.js"></script>
+    <script src="static/js/plots.js"></script>
+    <script src="static/js/app.js"></script>
+</body>
+
+</html>
