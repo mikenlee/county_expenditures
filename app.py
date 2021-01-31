@@ -1,7 +1,6 @@
 import pandas as pd
 import json
 from flask import Flask, jsonify, render_template
-# from flask_cors import CORS # enables CORS support on all routes
 
 #%%
 
@@ -11,8 +10,6 @@ from flask import Flask, jsonify, render_template
 #instantiate an app
 app = Flask(__name__)
 
-#initialize the Flask-Cors extension to allow CORS for all domains on all routes
-# CORS(app)
 #%%
 #################################################
 # Flask Routes

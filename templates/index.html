@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js" integrity="sha512-0XfwGD1nxplHpehcSVI7lY+m/5L37PNHDt+DOc7aLFckwPXjnjeA1oeNbru7YeI4VLs9i+ADnnHEhP69C9CqTA==" crossorigin="anonymous"></script>
   <!-- Defer the load of plots.js so that the page 
         can load first and then be processed by the script-->
-    <script src="{{ url_for('static', filename='js/plots.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
 </head>
 
 <body>
@@ -58,12 +58,23 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-2">
+          <div class="well">
+            <h5>Fiscal Year:</h5>
+            <!-- YOU WILL NEED TO ADD AN onchange EVENT TO THE DROP DOWN! -->
+            <select id="selFY" onchange = "optionChanged(this.value)"></select>
+          </div>         
+        </div>
+        <div class="col-md-5">
+          <div id="bar"></div>
+        </div>
+        <div class="col-md-5">
+          <div id="gauge"></div>
+        </div>
+      </div>
+
     <div id="fairfaxPlot"></div>
-    <!--
-    <script src="static/js/data.js"></script>
-    <script src="static/js/plots.js"></script>
-    <script src="static/js/app.js"></script>
-    -->
     
 </body>
 
