@@ -1,12 +1,7 @@
 import pandas as pd
 import json
-from flask import Flask, jsonify
-from flask_cors import CORS # enables CORS support on all routes
-
-file_location = '/Users/mikenlee/Documents/Personal/analytics/GWU/county_expenditures/static/js/fairfax_data.json'
-
-with open (file_location) as json_file:
-    fairfax_data = json.load(json_file)
+from flask import Flask, jsonify, render_template
+# from flask_cors import CORS # enables CORS support on all routes
 
 #%%
 
@@ -17,16 +12,21 @@ with open (file_location) as json_file:
 app = Flask(__name__)
 
 #initialize the Flask-Cors extension to allow CORS for all domains on all routes
-CORS(app)
+# CORS(app)
 #%%
 #################################################
 # Flask Routes
 #################################################
 #%%
-
 #default route
 @app.route("/")
-def welcome():
+def home():
+    return render_template('index.html')
+    
+#%%
+
+@app.route("/api")
+def api_list():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
@@ -40,9 +40,12 @@ def welcome():
     )
 
 #%%
-@app.route("/api/v1.0/fairfax")
-def fairfax():
-    
+@app.route("/api/fairfax")
+def fairfax(): 
+    # Opening JSON file 
+    f = open('static/data/fairfax_data.json',)
+    fairfax_data = json.load(f)
+
     return jsonify(fairfax_data)
 
 #%%

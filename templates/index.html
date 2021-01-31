@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
   <style>
     * {
       box-sizing: border-box;
     }
-    
     /* Create two equal columns that floats next to each other */
     .column {
       float: left;
@@ -26,6 +26,10 @@
     clear: both;
     }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js" integrity="sha512-0XfwGD1nxplHpehcSVI7lY+m/5L37PNHDt+DOc7aLFckwPXjnjeA1oeNbru7YeI4VLs9i+ADnnHEhP69C9CqTA==" crossorigin="anonymous"></script>
+  <!-- Defer the load of plots.js so that the page 
+        can load first and then be processed by the script-->
+    <script src="{{ url_for('static', filename='js/plots.js') }}" defer></script>
 </head>
 
 <body>
@@ -55,9 +59,12 @@
     </div>
 
     <div id="fairfaxPlot"></div>
+    <!--
     <script src="static/js/data.js"></script>
     <script src="static/js/plots.js"></script>
     <script src="static/js/app.js"></script>
+    -->
+    
 </body>
 
 </html>
