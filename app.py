@@ -46,5 +46,14 @@ def fairfax():
     return jsonify(fairfax_data)
 
 #%%
+@app.route("/api/geojson/ncr")
+def geojson(): 
+    # Opening JSON file 
+    f = open('static/data/fairfax_data.json',)
+    fairfax_data = json.load(f)
+
+    return jsonify(fairfax_data)
+
+#%%
 if __name__ == '__main__':
     app.run(debug=True)
