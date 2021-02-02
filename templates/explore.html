@@ -62,16 +62,60 @@
             </div>
       </header>
     
-    <br>
-
     <main class="px-3">
         <h1>County Expenditures</h1>
         <p class="lead">The National Capital Region is comprised of DC and six counties: 
             Fairfax, Louden, Arlington, Prince William, Prince George's, Montgomery.
             Use this app to explore how they have been spending tax payer dollars.</p>
+        <p class="lead">
+            <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Explore</a>
+        </p>
     </main>
 
     <div class='container'>
+        <div class = "row">
+            <h2>Select counties to compare:</h2>
+        </div>
+        
+        <div class = "row">
+            <div class = "column">
+                <ul>
+                    <li>Fairfax</li>
+                    <li>Louden</li>
+                    <li>Arlington</li>
+                    <li>Prince William</li>
+                    <li>Prince George's</li>
+                    <li>Montgomery</li>
+                    <li>DC</li>
+                </ul>
+            </div>
+            <div class = "column">
+                <img src="https://www.capitalareafoodbank.org/wp-content/uploads/2019/09/CAFB_Map-Need.svg" alt = "NCR"
+                style = "width: 50%;">
+            </div>
+            <div class = "column">
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+            <div class="well">
+                <h5>Fiscal Year:</h5>
+                
+                <select id="selFY" onchange = "optionChanged(this.value)"></select>
+            </div>         
+            </div>
+            <div class="col-md-5">
+            <div id="bar"></div>
+            </div>
+            <div class="col-md-5">
+            <div id="gauge"></div>
+            </div>
+        </div>
+        
+        <!-- tree map div -->
+        <div id="fairfaxPlot"></div>
         
         <!-- map div -->
         <div class='row'>
@@ -81,27 +125,11 @@
             
             </div>
         </div>
-
-        <div class = "row">
-            
-            <div class = "column">
-                <img src="https://www.capitalareafoodbank.org/wp-content/uploads/2019/09/CAFB_Map-Need.svg" alt = "NCR"
-                style = "width: 50%;">
-            </div>
-
-            
-            <p class="lead">
-                <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Explore</a>
-            </p>
-
-        </div>
-        
-        
     </div>        
         
 
    
-    <!-- Leaflet API key -->
+    <!-- API key -->
     <script type="text/javascript" src="static/js/config.js"></script>
       
       <footer class="mt-auto text-white-50">

@@ -55,5 +55,14 @@ def geojson():
     return jsonify(fairfax_data)
 
 #%%
+@app.route("/css/core")
+def core_css(): 
+    # Opening JSON file 
+    f = open('static/css/core.css',)
+    core = json.load(f)
+
+    return core
+
+#%%
 if __name__ == '__main__':
     app.run(debug=True)
