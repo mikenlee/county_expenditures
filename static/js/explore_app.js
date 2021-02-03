@@ -64,7 +64,7 @@ function buildCharts(fy) {
       paper_bgcolor: 'rgba(255,0,0,0.0)',
       plot_bgcolor: 'rgba(255,0,0,0.0)'}
 
-    Plotly.newPlot('fairfaxPlot', data, layout)
+    Plotly.newPlot('fairfaxPlot', data, layout, {displayModeBar: false});
 });
 }
   
@@ -85,11 +85,12 @@ function optionChanged(newFY) {
 // Creating map object
 var myMap = L.map("map", {
   center: [38.91999, -77.26581],
-  zoom: 9,
+  zoom: 8,
   zoomControl: false,
   scrollWheelZoom: false,
   attributionControl: false
 });
+
 
 // Use this link to get the geojson data.
 var link = "static/data/scoped_counties.geojson";
@@ -115,7 +116,7 @@ d3.json(link).then(data => {
         mouseover: function(event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: .8            
+            fillOpacity: 1            
           });
           
         },

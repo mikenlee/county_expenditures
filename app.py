@@ -19,6 +19,12 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template('index.html')
+
+#%%
+#default route
+@app.route("/explore")
+def explore():
+    return render_template('explore.html')
     
 #%%
 
@@ -49,10 +55,10 @@ def fairfax():
 @app.route("/api/geojson/ncr")
 def geojson(): 
     # Opening JSON file 
-    f = open('static/data/fairfax_data.json',)
-    fairfax_data = json.load(f)
+    f = open('static/data/scoped_counties.geojson',)
+    county_map = json.load(f)
 
-    return jsonify(fairfax_data)
+    return jsonify(county_map)
 
 #%%
 @app.route("/css/core")

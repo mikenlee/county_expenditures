@@ -8,6 +8,14 @@
      max-width: 100%;
  }
 
+ /* over ride leaflet css for background color */
+ #map {
+    background-color:rgba(255,0,0,0.0);
+}
+#fairfaxPlot {
+    background-color:rgba(255,0,0,0.0);
+}
+
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
