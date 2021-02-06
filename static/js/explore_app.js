@@ -2,7 +2,7 @@
  *              Initialize the visualization               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-d3.json("/api/fairfax").then(response => {
+d3.json("/api/ncr_counties_expenditures").then(response => {
   //select FY drop down element
   var fyElement = d3.select("#selFY");
 
@@ -28,7 +28,7 @@ d3.json("/api/fairfax").then(response => {
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
   
 function buildCharts(fy) {
-  d3.json("/api/fairfax").then(response => {
+  d3.json("/api/ncr_counties_expenditures").then(response => {
     // filter data on fiscal year
     var filteredFairfax = response.filter(d => d.fiscal_year == fy);
     // department labels
@@ -96,7 +96,7 @@ var myMap = L.map("map", {
 var link = "static/data/scoped_counties.geojson";
 
 // Grabbing our GeoJSON data..
-d3.json(link).then(data => {
+d3.json("/api/geojson/ncr").then(data => {
   // Creating a geoJSON layer with the retrieved data
   L.geoJson(data, {
     // Style each feature (in this case a county)
@@ -133,7 +133,7 @@ d3.json(link).then(data => {
         // }
       });
       // Giving each feature a pop-up with information pertinent to it
-      // layer.bindPopup(`<h1>${feature.properties.neighborhood}</h1><hr/><h2 style='text-align: center;'>${feature.properties.borough}</h2>`);
+      layer.bindPopup(`<h4>${feature.properties.county}</h4><hr/><h5 style='text-align: center;'>${feature.properties.population}</h5>`);
 
     }
   }).addTo(myMap);

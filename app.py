@@ -2,6 +2,22 @@ import pandas as pd
 import json
 from flask import Flask, jsonify, render_template
 
+# SQL Alchemy
+from sqlalchemy import create_engine
+
+# PyMySQL 
+import pymysql
+pymysql.install_as_MySQLdb()
+
+# Config variables
+import config
+from config import remote_db_endpoint, remote_db_port
+from config import remote_db_name, remote_db_user, remote_db_pwd
+
+# Import Pandas
+import pandas as pd
+
+
 #%%
 
 #################################################
@@ -43,19 +59,28 @@ def api_list():
     )
 
 #%%
-@app.route("/api/fairfax")
+@app.route("/api/ncr_counties_expenditures")
 def fairfax(): 
-    # Opening JSON file 
-    f = open('static/data/fairfax_data.json',)
-    fairfax_data = json.load(f)
+    # Cloud MySQL Database Connection on AWS
+    cloud_engine = create_engine(f"mysql://{remote_db_user}:{remote_db_pwd}@{remote_db_endpoint}:{remote_db_port}/{remote_db_name}")
+    # Create a remote database engine connection
+    cloud_conn = cloud_engine.connect()
+    
+    #read in from AWS
+    ncr_county = pd.read_sql("SELECT * FROM ncr_county_expenditures", cloud_conn)
+    ncr_county
 
-    return jsonify(fairfax_data)
+    # Opening JSON file 
+    # f = open('static/data/fairfax_data.json',)
+    # fairfax_data = json.load(f)
+
+    return jsonify(ncr_county.to_dict(orient="records"))
 
 #%%
 @app.route("/api/geojson/ncr")
 def geojson(): 
     # Opening JSON file 
-    f = open('static/data/scoped_counties.geojson',)
+    f = open('static/data/scoped_counties_info.geojson',)
     county_map = json.load(f)
 
     return jsonify(county_map)
