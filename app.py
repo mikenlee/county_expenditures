@@ -1,3 +1,5 @@
+import os
+
 # Heroku check
 is_heroku = False
 if 'IS_HEROKU' in os.environ:
@@ -13,6 +15,7 @@ from sqlalchemy import create_engine
 # PyMySQL 
 import pymysql
 pymysql.install_as_MySQLdb()
+
 # Import your config file(s) and variable(s)
 if is_heroku == True:
     # if IS_HEROKU is found in the environment variables, then use the rest
