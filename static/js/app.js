@@ -36,7 +36,23 @@ d3.json("/api/geojson/ncr").then(data => {
 
     // Called on each feature
     onEachFeature: function(feature, layer) {
+      //use to go back to original text on mouse out
       var originalText = d3.select('#county-info').html()
+
+      //look up table for geojson properties
+      var propertyLabels = {
+        founded: 'Founded: ',
+        named_for: 'Named for: ',
+        seat: 'Seat: ',
+        largest_town: 'Largest Town: ', 
+        population: 'Population: ',
+        density: 'Density: ',
+        total_area: 'Total Area: ',
+        land_area: 'Land Area: ',
+        water_area: 'Water Area: '
+      };
+      
+      console.log(feature.properties);
 
       // Set mouse events to change map styling
       layer.on({
@@ -48,12 +64,30 @@ d3.json("/api/geojson/ncr").then(data => {
           });
 
           d3.select('#county-info').html(
+
             `<br>
             <h5><strong>${feature.properties.county}</strong></h5>
+            <em>Founded:  </em>${(feature.properties.founded !== null) ?  
+              feature.properties.founded : '-'
+            }
             <br>
+            <em>Named for:  </em>${feature.properties.named_for}
+            <br>
+            <em>Seat:  </em>${feature.properties.seat}
+            <br>
+            <em>Largest Town:  </em>${feature.properties.largest_town}
+            <br>
+            <hr>
             <em>Population:  </em>${feature.properties.population}
             <br>
-            <em> Description:  </em>`
+            <em>Density:  </em>${feature.properties.density}
+            <br>
+            <em>Total Area:  </em>${feature.properties.total_area}
+            <br>
+            <em>Land Area:  </em>${feature.properties.land_area}
+            <br>
+            <em>Water Area:  </em>${feature.properties.water_area}           
+            `
             )
                 
         },
