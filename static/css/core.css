@@ -46,6 +46,12 @@
     background-color:rgba(255,0,0,0.0);
 }
 
+/*CSS for county info */
+#county-info {
+    text-align: left;
+}
+
+
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
