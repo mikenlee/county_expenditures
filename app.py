@@ -55,19 +55,19 @@ def home():
     return render_template('index.html')
 
 #%%
-#default route
+#explore route
 @app.route("/explore")
 def explore():
     return render_template('explore.html')
 
 #%%
-#default route
+#documentation route
 @app.route("/documentation")
 def documentation():
     return render_template('documentation.html')
         
 #%%
-
+#api route
 @app.route("/api")
 def api_list():
     """List all available api routes."""
