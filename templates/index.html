@@ -6,7 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Document</title>
+
     <link rel="shortcut icon" type="image/jpg" href="../static/images/heart-fill.svg"/>
     
     <!-- Bootstrap -->
@@ -23,6 +25,8 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
+    <!-- Leaflet API key -->
+    <script type="text/javascript" src="static/js/config.js" defer></script>
     <!-- D3 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js" integrity="sha512-0XfwGD1nxplHpehcSVI7lY+m/5L37PNHDt+DOc7aLFckwPXjnjeA1oeNbru7YeI4VLs9i+ADnnHEhP69C9CqTA==" crossorigin="anonymous"></script>
     <!-- JS  -->
@@ -50,7 +54,7 @@
 
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
-    
+
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <div>
@@ -65,13 +69,15 @@
     
         <br>
         <br>
-        <br>
 
         <main class="px-3">
             <h1>County Expenditures</h1>
-            <p class="lead">The National Capital Region is comprised of DC and six major counties: 
-                Fairfax, Loudoun, Arlington, Prince William, Prince George's, Montgomery.
-                Use this app to explore how they have been spending tax payer dollars.</p>
+            <br>
+            <p class="lead">
+                The National Capital Region (NCR) is comprised of DC and six major counties: <br>
+                Fairfax, Loudoun, Arlington, Prince William, Prince George's, Montgomery. <br>
+                Click on <code>Explore</code> to see how they have been spending tax payer dollars.
+            </p>
         </main>
         
         <br>
@@ -79,15 +85,31 @@
         <div class='container'>
             
             <!-- map div -->
-            <div class='row'>
-                <div class='col-md-12 responsive-div'>
-                    <div id="map" style='width: auto; height: 400px;'></div>
+            <div class='d-flex flex-row p-1 mx-auto'>
+                <div class='col-md responsive-div'>
+                    <div id="county-info">
+                        <br>
+                        The NCR is the metropolitan area centered on Washington, D.C.
+                        The metro area anchors the southern end of the densely populated 
+                        Northeast megalopolis with an estimated total population of 6,216,589 as of the 
+                        2017 U.S. Census Bureau estimate, making it the sixth-largest metropolitan area in the nation 
+                        and the largest metropolitan area in the Census Bureau's South Atlantic division.
+                        <br>
+                        <br>
+                        Click on a <u>county</u> for more information:
+                    </div>
                 
                 </div>
-            </div>
+                <div class='col-md responsive-div'>
+                    <div id="map" style='width: auto; height: 300px;'></div>
+                
+                </div>
+                
+
+            </div> <!--end of map div-->
             
             <br>
-            <br>
+            
 
             <div class = "row">
                 
@@ -98,13 +120,11 @@
             </div>
         
         
-        </div>        
+        </div>                
         
 
-   
-        <!-- Leaflet API key -->
-        <script type="text/javascript" src="static/js/config.js"></script>
-        
+
+
         <footer class="mt-auto text-white-50">
             <!-- <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p> -->
         </footer>

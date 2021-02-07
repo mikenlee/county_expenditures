@@ -91,12 +91,14 @@ var myMap = L.map("map", {
   attributionControl: false
 });
 
+myMap.dragging.disable();
 
 // Use this link to get the geojson data.
 var link = "static/data/scoped_counties.geojson";
 
 // Grabbing our GeoJSON data..
 d3.json("/api/geojson/ncr").then(data => {
+  
   // Creating a geoJSON layer with the retrieved data
   L.geoJson(data, {
     // Style each feature (in this case a county)
@@ -110,10 +112,28 @@ d3.json("/api/geojson/ncr").then(data => {
     },
     // Called on each feature
     onEachFeature: function(feature, layer) {
+
+      // set popup css and content
+      var popupOptions = 
+      {
+        'className': 'custom-popup',
+        'autoPan': 'false'
+      };
+
+      var popupContent = 
+        `<strong>${feature.properties.county}</strong>
+        <hr/>
+        <strong>Population:</strong>
+        ${feature.properties.population}`
+
+      // Giving each feature a pop-up with information pertinent to it
+      layer.bindPopup(popupContent, {className: 'custom-popup', autoPan:false});
+
       // Set mouse events to change map styling
       layer.on({
         // When a user's mouse touches a map feature, the mouseover event calls this function, that feature's opacity changes to 90% so that it stands out
         mouseover: function(event) {
+          this.openPopup();
           layer = event.target;
           layer.setStyle({
             fillOpacity: 1            
@@ -122,6 +142,7 @@ d3.json("/api/geojson/ncr").then(data => {
         },
         // When the cursor no longer hovers over a map feature - when the mouseout event occurs - the feature's opacity reverts back to 50%
         mouseout: function(event) {
+          this.closePopup();
           layer = event.target;
           layer.setStyle({
             fillOpacity: 0.01

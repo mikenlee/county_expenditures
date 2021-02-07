@@ -67,13 +67,8 @@ def api_list():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/fairfax<br/>"
-        f"/api/v1.0/arlington   <-- Coming Soon<br/>"
-        f"/api/v1.0/louden   <-- Coming Soon<br/>"
-        f"/api/v1.0/prince_william   <-- Coming Soon<br/>"
-        f"/api/v1.0/prince_georges   <-- Coming Soon<br/>"
-        f"/api/v1.0/montgomery   <-- Coming Soon<br/>"
-        f"/api/v1.0/dc   <-- Coming Soon<br/>"
+        f"/api/ncr_counties_expenditures<br/>"
+        f"/api/geojson/ncr<br/>"
     )
 
 #%%

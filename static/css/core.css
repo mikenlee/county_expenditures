@@ -2,6 +2,36 @@
  * Globals
  */
 
+/* update leaflet css for popup */
+.custom-popup, .leaflet-popup-content-wrapper {
+    background:#343a40;
+    color:#fff;
+    font-size:16px;
+    line-height:10px;
+    border-radius: 10px;
+    text-align:center;
+    }
+
+.custom-popup, .leaflet-popup-content-wrapper a {
+    color:#343a40;
+    }
+
+.custom-popup, .leaflet-popup-tip-container {
+    width:auto;
+    height:auto;
+    }
+
+.custom-popup, .leaflet-popup-tip {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    }
+
+.leaflet-popup-close-button {
+    display: none; 
+    }
+
+/*CSS for map */
  .responsive-div {
      width: 100%;
      height: auto;
@@ -9,7 +39,7 @@
  }
 
  /* over ride leaflet css for background color */
- #map {
+#map {
     background-color:rgba(255,0,0,0.0);
 }
 #fairfaxPlot {
@@ -35,7 +65,7 @@ body {
 }
 
 .cover-container {
-  max-width: 42em;
+  max-width: 58em;
 }
 
 
