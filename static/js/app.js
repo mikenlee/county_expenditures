@@ -39,21 +39,6 @@ d3.json("/api/geojson/ncr").then(data => {
       //use to go back to original text on mouse out
       var originalText = d3.select('#county-info').html()
 
-      //look up table for geojson properties
-      var propertyLabels = {
-        founded: 'Founded: ',
-        named_for: 'Named for: ',
-        seat: 'Seat: ',
-        largest_town: 'Largest Town: ', 
-        population: 'Population: ',
-        density: 'Density: ',
-        total_area: 'Total Area: ',
-        land_area: 'Land Area: ',
-        water_area: 'Water Area: '
-      };
-      
-      console.log(feature.properties);
-
       // Set mouse events to change map styling
       layer.on({
         // When a user's mouse touches a map feature (county), the mouseover event calls this function, that feature's opacity changes to 90% so that it stands out
@@ -64,31 +49,45 @@ d3.json("/api/geojson/ncr").then(data => {
           });
 
           d3.select('#county-info').html(
-
             `<br>
             <h5><strong>${feature.properties.county}</strong></h5>
-            <em>Founded:  </em>${(feature.properties.founded !== null) ?  
-              feature.properties.founded : '-'
-            }
-            <br>
-            <em>Named for:  </em>${feature.properties.named_for}
-            <br>
-            <em>Seat:  </em>${feature.properties.seat}
-            <br>
-            <em>Largest Town:  </em>${feature.properties.largest_town}
-            <br>
             <hr>
-            <em>Population:  </em>${feature.properties.population}
-            <br>
-            <em>Density:  </em>${feature.properties.density}
-            <br>
-            <em>Total Area:  </em>${feature.properties.total_area}
-            <br>
-            <em>Land Area:  </em>${feature.properties.land_area}
-            <br>
-            <em>Water Area:  </em>${feature.properties.water_area}           
-            `
-            )
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr>
+                  <th scope="row"></th>
+                  <td align='right'><em>Founded:</em></td>
+                  <td>${feature.properties.founded}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td align='right'><em>Named for:</em></td>
+                  <td>${feature.properties.named_for}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td align='right'><em>Seat:</em></td>
+                  <td>${feature.properties.seat}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td align='right'><em>Largest Town:</em></td>
+                  <td>${feature.properties.largest_town}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td align='right'><em>Population:</em></td>
+                  <td>${feature.properties.population}</td>
+                </tr>
+                <tr>
+                  <th scope="row"></th>
+                  <td align='right'><em>Density:</em></td>
+                  <td>${feature.properties.density}</td>
+                </tr>
+              </tbody>
+            </table>`
+          );
+    
                 
         },
         // When the cursor no longer hovers over a map feature - when the mouseout event occurs - the feature's opacity reverts back to 50%

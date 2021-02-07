@@ -59,7 +59,13 @@ def home():
 @app.route("/explore")
 def explore():
     return render_template('explore.html')
-    
+
+#%%
+#default route
+@app.route("/documentation")
+def documentation():
+    return render_template('documentation.html')
+        
 #%%
 
 @app.route("/api")

@@ -31,6 +31,12 @@
     display: none; 
     }
 
+/* CSS for county info table */
+table tr td, table tr th{
+    background-color: rgba(255,0,0,0.0) !important;
+    color: #ffffff;
+}
+
 /*CSS for map */
  .responsive-div {
      width: 100%;
