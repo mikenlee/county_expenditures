@@ -50,9 +50,10 @@ d3.json("/api/geojson/ncr").then(data => {
           d3.select('#county-info').html(
             `<br>
             <h5><strong>${feature.properties.county}</strong></h5>
-            <strong>Population: </strong>${feature.properties.population}
             <br>
-            <strong> Description: </strong>`
+            <em>Population:  </em>${feature.properties.population}
+            <br>
+            <em> Description:  </em>`
             )
                 
         },
