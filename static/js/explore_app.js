@@ -24,18 +24,33 @@ d3.json("/api/ncr_counties_expenditures").then(response => {
 
   //select county checkboxes element
   var countyElement = d3.select("#selCounty");
+        
   // get Fiscal Year values for dropdown options
   var countyOptions = [...new Set(response.map(obj => obj.county))];
 
   //loop through array of counties and create new DOM node for each and append
   countyOptions.forEach(county => {
-    console.log(county);
+    if (county == 'Fairfax') { 
+    countyElement      
+      .append("input")
+        .attr('type', 'checkbox')
+        .attr('value', county)
+        .property('checked', true)
     countyElement
       .append("label")
+        .text(county)
+    }
+    else {
+      countyElement      
       .append("input")
-      .text(county)
-      .property('type', 'checkbox')
-      .property('value', county)
+        .attr('type', 'checkbox')
+        .attr('value', county)
+        .property('checked', false)
+    countyElement
+      .append("label")
+        .text(county)
+      }
+      
   });
 
   var firstFY = fyOptions[0];
