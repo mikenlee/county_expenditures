@@ -14,23 +14,47 @@ d3.json("/api/ncr_counties_expenditures").then(response => {
 
   //loop through array of FYs and create new DOM node for each and append
   fyOptions.forEach(fy => {
+    console.log(fy);
     fyElement
       .append("option")
       .text(fy)
       .property('value', fy)
   });
 
+
+  //select county checkboxes element
+  var countyElement = d3.select("#selCounty");
+  // get Fiscal Year values for dropdown options
+  var countyOptions = [...new Set(response.map(obj => obj.county))];
+
+  //loop through array of counties and create new DOM node for each and append
+  countyOptions.forEach(county => {
+    console.log(county);
+    countyElement
+      .append("label")
+      .append("input")
+      .text(county)
+      .property('type', 'checkbox')
+      .property('value', county)
+  });
+
   var firstFY = fyOptions[0];
-  buildCharts(firstFY);
+  var firstCounty = countyOptions[0];
+  buildCharts(firstCounty, firstFY);
 });
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 *              buildCharts() function                     *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
   
-function buildCharts(fy) {
+function buildCharts(county, fy) {
   d3.json("/api/ncr_counties_expenditures").then(response => {
     // filter data on fiscal year
-    var filteredFairfax = response.filter(d => d.fiscal_year == fy);
+    console.log(county);
+    console.log(fy);
+    var filteredFairfax = response.filter(d => d.fiscal_year == fy && d.county == county);
+    console.log(filteredFairfax)
+    // filter data on county
+    // var filteredFairfax = filteredFairfax_fy.filter(d => d.county == county);
     // department labels
     var labels = filteredFairfax.map(d => d.department)
     // Empty array for parents
@@ -113,48 +137,37 @@ d3.json("/api/geojson/ncr").then(data => {
     // Called on each feature
     onEachFeature: function(feature, layer) {
 
-      // set popup css and content
-      var popupOptions = 
-      {
-        'className': 'custom-popup',
-        'autoPan': 'false'
-      };
-
-      var popupContent = 
-        `<strong>${feature.properties.county}</strong>
-        <hr/>
-        <strong>Population:</strong>
-        ${feature.properties.population}`
-
-      // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup(popupContent, {className: 'custom-popup', autoPan:false});
-
       // Set mouse events to change map styling
       layer.on({
         // When a user's mouse touches a map feature, the mouseover event calls this function, that feature's opacity changes to 90% so that it stands out
         mouseover: function(event) {
-          this.openPopup();
+
           layer = event.target;
           layer.setStyle({
             fillOpacity: 1            
           });
           
+          d3.select('#county-hover').html(
+            `
+            <strong>${feature.properties.county}</strong>
+            `
+          );
+    
         },
         // When the cursor no longer hovers over a map feature - when the mouseout event occurs - the feature's opacity reverts back to 50%
         mouseout: function(event) {
-          this.closePopup();
+
           layer = event.target;
           layer.setStyle({
             fillOpacity: 0.01
           });
+
+          d3.select('#county-hover').html(
+            ``
+          );
         },
-        // When a feature (neighborhood) is clicked, it is enlarged to fit the screen
-        // click: function(event) {
-        //   myMap.fitBounds(event.target.getBounds());
-        // }
+
       });
-      // Giving each feature a pop-up with information pertinent to it
-      layer.bindPopup(`<h4>${feature.properties.county}</h4><hr/><h5 style='text-align: center;'>${feature.properties.population}</h5>`);
 
     }
   }).addTo(myMap);

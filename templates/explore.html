@@ -54,7 +54,7 @@
             <ul class="nav flex-column">
               
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/">
                   <span data-feather="home"></span>
                   Home <span class="sr-only"></span>
                 </a>
@@ -119,15 +119,36 @@
 
           </div>
 
-            <!-- map div -->
+            
             <div class='row'>
-              <div class='col-md-12 responsive-div'>
+              <div class='col-md responsive-div'>
 
-                  <div id="map" style='width: auto; height: 210px;'></div>
+                <div id="selCounty" class="checkbox">
+                  <label><input type="checkbox" value="Fairfax">Fairfax</input></label>
+                </div>
+                
+
+                <div class="checkbox">
+                  <label><input type="checkbox" class="check" value="Fairfax" onclick="buildCharts(county=this.value)">Fairfax County</label>
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" class="check" value="Loudoun">Loudoun County</label>
+                </div>
+                <div class="checkbox disabled">
+                  <label><input type="checkbox" class="check" value="Prince William" disabled>Prince William County</label>
+                </div>
+              </div>
+              <div class='col-md responsive-div'>
+                <div id='county-hover'></div>
+                <br>
+                <!-- map div -->
+                <div id="map" style='width: auto; height: 210px;'></div>
               
               </div>
             </div>
-          
+            <h5>Fiscal Year:</h5>
+                
+            <select id="selFY" onchange = "optionChanged(this.value)"></select>
             <!-- tree map div -->
           <div id="fairfaxPlot"></div>
 
@@ -141,8 +162,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
